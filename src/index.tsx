@@ -1,15 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import ReactDOM, { Root } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { configureStore, Store } from '@reduxjs/toolkit';
+import rootReducer, { ApplicationState } from './store';
+import { Provider } from 'react-redux';
 
-const root = ReactDOM.createRoot(
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import './index.css';
+
+const store: Store<ApplicationState> = configureStore({reducer: rootReducer});
+
+const root: Root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

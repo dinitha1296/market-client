@@ -1,0 +1,27 @@
+/* .department {
+    
+} */
+
+.dep-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.dep-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dep-btn-selected {
+    background-color: white;
+    border: none;
+    color: var(--color-one);
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

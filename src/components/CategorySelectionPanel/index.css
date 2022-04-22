@@ -1,0 +1,66 @@
+.cat-selection-panel {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    /* border-bottom: 1px solid black; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-height: 80vh;
+    overflow: auto;
+    z-index: 1;
+}
+
+.cat-selection-panel .title-bar button {
+    width: 6rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-two);
+    border-radius: 1.25rem;
+    background-color: transparent;
+}
+
+.cat-selection-panel .title-bar button:hover {
+    color: white;
+    background-color: var(--color-two);
+}
+
+.sub-department-section {
+    width: 30%;
+}
+
+.sub-department-bar {
+    --padding-x: 1.5rem;
+    --padding-y: 0.8rem;
+    padding: var(--padding-y);
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid white;
+    color: var(--color-one);
+    background-color: var(--color-light-grey);
+}
+
+.sub-department-bar:hover {
+    background-color: var(--color-bg-hover-darken);
+}
+
+.category-section {
+    padding: 0;
+}
+
+.category-section a {
+    color: var(--color-two);
+    text-decoration: none;
+    padding: 0;
+    display: block;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+
+.category-section a:hover {
+    color: var(--color-one);
+}

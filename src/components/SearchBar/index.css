@@ -1,0 +1,25 @@
+.search-bar {
+    height: 2rem;
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    color: black;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.search-bar input {
+    border: none;
+    width: 14rem;
+    outline: none;
+}
+
+.search-bar button {
+    border: none;
+    background-color: transparent;
+    width: 2rem;
+    justify-self: right;
+}
