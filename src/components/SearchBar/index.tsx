@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import "./index.css";
 
-type SearchBarProps = {
-    searchTearm: string;
-    onSearch: (query: string) => void;
-}
-
-const SearchBar = (props: SearchBarProps): JSX.Element => {
+const SearchBar = (): JSX.Element => {
 
     const [query, queryChange] = useState<string>("");
 
+    const navigate: NavigateFunction = useNavigate();
+
     useEffect(() => {
-        queryChange(props.searchTearm);
+        queryChange("");
     }, [])
 
     const onInputFiledChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -23,6 +21,12 @@ const SearchBar = (props: SearchBarProps): JSX.Element => {
         queryChange("");
     }
 
+    const onSearch = (): void => {
+        const encodedQuery: string = 
+            (new URLSearchParams({search: query.toLowerCase()})).toString();
+        navigate(`/products?${encodedQuery}`)
+    }
+
     return (
         <form id="search" className="search-bar" action="javascript:void(0)">
             <input type="text" value={query} onChange={onInputFiledChange} placeholder="Search products" />
@@ -31,7 +35,7 @@ const SearchBar = (props: SearchBarProps): JSX.Element => {
                     <i className="bi bi-x"></i>
                 </button>
             }
-            <button form="search" type="submit" onClick={() => props.onSearch(query)}>
+            <button form="search" type="submit" onClick={onSearch}>
                 <i className="bi bi-search"></i>
             </button>
         </form>

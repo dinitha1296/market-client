@@ -1,9 +1,19 @@
 import React from "react";
+import { DepartmentBar, SearchBar, TopNavigation } from "../components";
 
-const Products = (): JSX.Element => {
-    return (
-        <p>Products</p>
-    );
+class Products extends React.Component<{}, {}> {
+
+    render(): JSX.Element {
+        return (
+            <div>
+                <TopNavigation>
+                    <SearchBar></SearchBar>
+                </TopNavigation>
+                <DepartmentBar></DepartmentBar>
+                <p>Products</p>
+            </div>
+        );
+    }
 }
 
 export default Products;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Category, Department, SubDepartment } from "../../models";
 import { ApplicationState } from "../../store";
 
@@ -52,7 +53,7 @@ const CategorySelectionPanel = (props: CategorySelectionPanelProps): JSX.Element
             <div className="d-flex title-bar">
                 <h3 className="m-0">{props.department.departmentName}</h3>
                 <div className="flex-grow-1"></div>
-                <button><h6 className="m-0">Close</h6></button>
+                <button onClick={props.onClose}><h6 className="m-0">Close</h6></button>
             </div>
             <div className="mt-5 d-flex">
                 <nav className="sub-department-section">
@@ -66,16 +67,24 @@ const CategorySelectionPanel = (props: CategorySelectionPanelProps): JSX.Element
                 </nav>
                 {selectedSubDepartment &&
                     <div className="category-section px-5">
-                        <a>{`All ${props.department.departmentName}`}</a>
-                        <a>{`All ${selectedSubDepartment.subDepartmentName}`}</a>
-                        {categories.map((cat: Category, index, number) => { return (
-                            <a href="">{cat.categoryName}</a>
+                        <Link to={`/products?department=${props.department.departmentId}`} onClick={props.onClose}>
+                            {`All ${props.department.departmentName}`}
+                        </Link>
+                        <Link to={`/products?sub-department=${selectedSubDepartment.subDepartmentId}`}  onClick={props.onClose}>
+                            {`All ${selectedSubDepartment.subDepartmentName}`}
+                        </Link>
+                        {categories.map((cat: Category, index: number) => { return (
+                            <Link key={index} to={`/products?category=${cat.categoryId}`}  onClick={props.onClose}>
+                                {cat.categoryName}
+                            </Link>
                         );})}
                     </div>
                 }
                 {!selectedSubDepartment &&
                     <div className="category-section px-5">
-                        <a>{`All ${props.department.departmentName}`}</a>
+                        <Link to={`/products?department=${props.department.departmentId}`}  onClick={props.onClose}>
+                            {`All ${props.department.departmentName}`}
+                        </Link>
                     </div>
                 }
             </div>
