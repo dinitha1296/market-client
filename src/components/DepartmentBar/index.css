@@ -1,6 +1,7 @@
-/* .department {
-    
-} */
+.department {
+    display: flex;
+    overflow: auto;
+}
 
 .dep-btn {
     background-color: transparent;

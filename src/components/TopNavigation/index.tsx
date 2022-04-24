@@ -10,7 +10,7 @@ const TopNavigation = (props: React.PropsWithChildren<{}>): JSX.Element => {
         <nav className="navbar navbar-default px-3 bg-color-one text-white">
             <div id="app-title">
                 <a href="/" className="text-reset text-decoration-none">
-                    <h2 className="text-white">Market</h2>
+                    <h2 className="text-white mb-0">Market</h2>
                 </a>
             </div>
             {props.children}

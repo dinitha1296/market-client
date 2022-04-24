@@ -1,9 +1,9 @@
 import React from "react";
 
-const Checkout = (): JSX.Element => {
+const CheckoutPage = (): JSX.Element => {
     return (
         <p>Checkout</p>
     );
 }
 
-export default Checkout;
+export default CheckoutPage;

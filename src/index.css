@@ -13,11 +13,13 @@
     /* Walmart */
     /* --color-one: #0071dc;
     --color-two: #ffc220; */
+
+    --product-item-card-width: 12rem;
+    --product-item-card-margin: 1rem;
+    --product-item-card-padding: 1rem;
+    --product-item-total-width: calc(var(--product-item-card-width) + var(--product-item-card-padding) * 2);
+    --product-section-available-width: calc(5 * var(--product-item-total-width));
 }
-/* 
-* {
-    color: #3a474e;
-} */
 
 body {
 	margin: 0;

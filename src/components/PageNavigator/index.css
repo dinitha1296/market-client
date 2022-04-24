@@ -1,0 +1,7 @@
+.page-link {
+    color: var(--color-two);
+}
+
+.page-link:hover {
+    color: var(--color-one);
+}

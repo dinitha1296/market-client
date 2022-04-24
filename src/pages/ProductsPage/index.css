@@ -1,0 +1,13 @@
+.products-section {
+    /* background-color: var(--color-light-grey); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 14rem);
+    justify-content: center;
+}
+
+.products-section-wrapper {
+    background-color: var(--color-light-grey);
+    /* flex-grow: 1; */
+    overflow: auto;
+    height: calc(100vh - 6.4rem);
+}
