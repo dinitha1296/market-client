@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Product } from "../../models";
+import { AnyAction } from "@reduxjs/toolkit";
+import React, { Dispatch, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Cart, Product } from "../../models";
+import { ApplicationState } from "../../store";
+import { decreaseItem, increaseItem } from "../../store/cart/actions";
 
 import "./index.css";
 
@@ -7,11 +11,26 @@ const ProductItem = (props: ProductItemProps): JSX.Element => {
 
     const [count, setCount] = useState<number>(0);
 
-    useEffect(() => setCount(0), [props.product]);
+    const dispatch: Dispatch<AnyAction> = useDispatch();
 
-    const increment = (): void => setCount(count + 1);
+    const cart: Cart = useSelector((state: ApplicationState) => state.cart);
 
-    const decrement = (): void => setCount(count - 1);
+    const increase = (): void => {
+        dispatch(increaseItem(props.product, cart));
+        // setCount(count + 1);
+    }
+
+    const decrease = (): void => {
+        dispatch(decreaseItem(props.product, cart));
+        // setCount(count - 1);
+    }
+
+    useEffect(() => {setCount(0)}, [props.product]);
+
+    useEffect(() => {
+        setCount(cart.items.get(props.product.productId)?.count || 0);
+    }, [cart, props.product])
+
 
     return (
         <div className="product-item">
@@ -24,19 +43,19 @@ const ProductItem = (props: ProductItemProps): JSX.Element => {
                 />
             {count === 0 && 
                 <button 
-                    disabled={count == props.product.productMaxQuantity} 
+                    disabled={count === props.product.productMaxQuantity} 
                     className="add-to-cart-btn" 
-                    onClick={increment}>
+                    onClick={increase}>
                         Add to cart <i className="bi bi-cart"></i>
                 </button>
             }
             {count !== 0 &&
                 <div className="add-to-cart-btn add-to-cart-btn-change">
-                    <button onClick={decrement}><i className="bi bi-dash"></i></button>
+                    <button onClick={decrease}><i className="bi bi-dash"></i></button>
                     <div className="d-flex flex-grow-1"><span className="m-auto">{count}</span></div>
                     <button 
-                        disabled={count == props.product.productMaxQuantity} 
-                        onClick={increment}>
+                        disabled={count === props.product.productMaxQuantity} 
+                        onClick={increase}>
                             <i className="bi bi-plus"></i>
                     </button>
                 </div>
