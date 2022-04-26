@@ -76,7 +76,7 @@ const ProductsPage = (): JSX.Element => {
             <DepartmentBar></DepartmentBar>
             <div className="products-section-wrapper" >
                 <div className="products-section">
-                    {products.map(prod => <ProductItem product={prod}></ProductItem>)}
+                    {products.map(prod => <ProductItem key={prod.productId} product={prod}></ProductItem>)}
                 </div>
                 <PageNavigator 
                     totalPages={totalPages} 
