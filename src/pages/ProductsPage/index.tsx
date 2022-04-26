@@ -34,41 +34,40 @@ const ProductsPage = (): JSX.Element => {
     }
 
     useEffect(() => {
-        setPageNum(parseInt(params.get("page") || '0') || undefined);
-    }, [params]);
-
-
-    useEffect(() => {
         
+        const newPageNumber: number | undefined = parseInt(params.get("page") || '0') || undefined;
+        
+        setPageNum(newPageNumber);
+
         if (params.has("search")) {
             
-            ProductService.getProducts(params.get("search") || "", pageNum, 48)
+            ProductService.getProducts(params.get("search") || "", newPageNumber, 48)
                 .then(extractPageInfo);
 
         } else if (params.has("category")) {
 
-            ProductService.getProductsByCategoryId(parseInt(params.get("category") || "1"), pageNum, 48)
+            ProductService.getProductsByCategoryId(parseInt(params.get("category") || "1"), newPageNumber, 48)
                 .then(extractPageInfo);
 
         } else if (params.has("sub-department")) {
             
-            ProductService.getProductsBySubDepartmentId(parseInt(params.get("sub-department") || "1"), pageNum, 48)
+            ProductService.getProductsBySubDepartmentId(parseInt(params.get("sub-department") || "1"), newPageNumber, 48)
                 .then(extractPageInfo);
 
         } else if (params.has("department")) {
             
-            ProductService.getProductsByDepartmentId(parseInt(params.get("department") || "1"), pageNum, 48)
+            ProductService.getProductsByDepartmentId(parseInt(params.get("department") || "1"), newPageNumber, 48)
                 .then(extractPageInfo);
 
         } else {
 
-            ProductService.getProducts(undefined, pageNum, 48)
+            ProductService.getProducts(undefined, newPageNumber, 48)
                 .then(extractPageInfo);
 
         }
 
         document.getElementById("product-section-wrapper")?.scrollTo(0, 0);
-    }, [params, pageNum]);
+    }, [params]);
 
     return (
         <div>
