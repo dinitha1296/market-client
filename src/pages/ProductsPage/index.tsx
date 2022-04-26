@@ -25,7 +25,11 @@ const ProductsPage = (): JSX.Element => {
     const onPageChange = (pageNum: number) => {
         const newParams: any = {};
         params.forEach((v, k, p) => {newParams[k] = v});
-        newParams["page"] = pageNum.toString();
+        if (pageNum > 1) {
+            newParams["page"] = pageNum.toString();
+        } else {
+            delete newParams["page"];
+        }
         setParams(newParams);
     }
 
