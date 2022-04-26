@@ -66,6 +66,8 @@ const ProductsPage = (): JSX.Element => {
                 .then(extractPageInfo);
 
         }
+
+        document.getElementById("product-section-wrapper")?.scrollTo(0, 0);
     }, [params, pageNum]);
 
     return (
@@ -74,7 +76,7 @@ const ProductsPage = (): JSX.Element => {
                 <SearchBar></SearchBar>
             </TopNavigation>
             <DepartmentBar></DepartmentBar>
-            <div className="products-section-wrapper" >
+            <div id="product-section-wrapper" className="products-section-wrapper" >
                 <div className="products-section">
                     {products.map(prod => <ProductItem key={prod.productId} product={prod}></ProductItem>)}
                 </div>
