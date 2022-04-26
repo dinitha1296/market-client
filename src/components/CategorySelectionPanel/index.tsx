@@ -26,7 +26,7 @@ const CategorySelectionPanel = (props: CategorySelectionPanelProps): JSX.Element
     useEffect(() => {
         changeSelectedSubDepartment(undefined);
         changeSubDepartments(allSubDepartments.filter(sub => sub.department.departmentId === props.department.departmentId));
-    }, [props.department])
+    }, [props.department, allSubDepartments])
 
     useEffect(() => {
         if (!selectedSubDepartment) {
@@ -34,7 +34,7 @@ const CategorySelectionPanel = (props: CategorySelectionPanelProps): JSX.Element
         } else {
             changeCategories(allCategories.filter(cat => cat.subDepartment.subDepartmentId === selectedSubDepartment?.subDepartmentId));
         }
-    }, [selectedSubDepartment]);
+    }, [selectedSubDepartment, allCategories]);
 
     const isSelectedSubDep = (subDepartment: SubDepartment): boolean => {
         return selectedSubDepartment !== undefined && selectedSubDepartment === subDepartment;

@@ -8,7 +8,7 @@ import "./index.css";
 
 const DepartmentBar = (): JSX.Element => {
 
-    const [selectedDep, selectedDepChange] = useState<Department | undefined>(undefined);
+    const [selectedDep] = useState<Department | undefined>(undefined);
     const [categoryPanelDepartment, categoryPanelDepartmentChange] = useState<Department | undefined>(undefined);
 
     const departments: Department[] = useSelector((state: ApplicationState) => state.departments);

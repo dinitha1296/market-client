@@ -27,18 +27,22 @@ const SearchBar = (): JSX.Element => {
         navigate(`/products?${encodedQuery}`)
     }
 
+    const onEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        e.key === "Enter" && onSearch();
+    }
+
     return (
-        <form id="search" className="search-bar" action="javascript:void(0)">
-            <input type="text" value={query} onChange={onInputFiledChange} placeholder="Search products" />
+        <div id="search" className="search-bar">
+            <input onChange={onInputFiledChange} placeholder="Search products" onKeyDown={onEnter}/>
             {query &&
                 <button type="button" onClick={onClear}>
                     <i className="bi bi-x"></i>
                 </button>
             }
-            <button form="search" type="submit" onClick={onSearch}>
+            <button onClick={onSearch}>
                 <i className="bi bi-search"></i>
             </button>
-        </form>
+        </div>
     );
 }
 
