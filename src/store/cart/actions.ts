@@ -17,25 +17,25 @@ const changeCart = (cart: Cart): PayloadAction<Cart, CartActionTypes> => {
 export const clearCart = (): PayloadAction<Cart, CartActionTypes> => {
     return {
         type: CartActionTypes.CLEAR_CART,
-        payload: new CartImpl()
+        payload: new CartImpl().getCart()
     }
 }
 
 export const removeItem = (product: Product, currentCart: Cart): PayloadAction<Cart, CartActionTypes> => {
     const newCart: CartImpl = new CartImpl(currentCart);
     newCart.removeItem(product);
-    return changeCart(newCart);
+    return changeCart(newCart.getCart());
 }
 
 export const increaseItem = (product: Product, currentCart: Cart): PayloadAction<Cart, CartActionTypes> => {
     const newCart: CartImpl = new CartImpl(currentCart);
     newCart.increaseItem(product);
-    return changeCart(newCart);
+    return changeCart(newCart.getCart());
 
 }
 
 export const decreaseItem = (product: Product, currentCart: Cart): PayloadAction<Cart, CartActionTypes> => {
     const newCart: CartImpl = new CartImpl(currentCart);
     newCart.decreaseItem(product);
-    return changeCart(newCart);
+    return changeCart(newCart.getCart());
 }

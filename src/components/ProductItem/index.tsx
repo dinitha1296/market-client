@@ -17,26 +17,21 @@ const ProductItem = (props: ProductItemProps): JSX.Element => {
 
     const increase = (): void => {
         dispatch(increaseItem(props.product, cart));
-        // setCount(count + 1);
     }
 
     const decrease = (): void => {
         dispatch(decreaseItem(props.product, cart));
-        // setCount(count - 1);
     }
 
-    useEffect(() => {setCount(0)}, [props.product]);
-
     useEffect(() => {
-        setCount(cart.items.get(props.product.productId)?.count || 0);
-    }, [cart, props.product])
+        setCount(cart.items[props.product.productId] ? cart.items[props.product.productId].count : 0);
+    }, [props.product, cart])
 
 
     return (
         <div className="product-item">
             <img 
                 className="product-item-image" 
-                key={"product-image-" + props.product.productId} 
                 src={props.product.productImageURL}
                 alt=""
                 onError={({currentTarget}) => currentTarget.src = '/image-not-available.jpg'}

@@ -13,4 +13,8 @@ export class CartItemImpl implements CartItem {
         this.product = product;
         this.count = count;
     }
+
+    getCartImpl(): CartItem {
+        return {product: this.product, count: this.count};
+    }
 }
