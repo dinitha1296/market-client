@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Cart, Product } from "../../models";
 import { ApplicationState } from "../../store";
 import { decreaseItem, increaseItem } from "../../store/cart/actions";
+import { parseCurrency, parseProductUnit, parseProductUnitWithPer } from "../../utils/parser";
 
 import "./index.css";
 
@@ -38,7 +39,7 @@ const ProductItem = (props: ProductItemProps): JSX.Element => {
                 />
             {count === 0 && 
                 <button 
-                    disabled={count === props.product.productMaxQuantity} 
+                    disabled={count * props.product.productQuantityIncrement >= props.product.productMaxQuantity} 
                     className="add-to-cart-btn" 
                     onClick={increase}>
                         Add to cart <i className="bi bi-cart"></i>
@@ -47,15 +48,20 @@ const ProductItem = (props: ProductItemProps): JSX.Element => {
             {count !== 0 &&
                 <div className="add-to-cart-btn add-to-cart-btn-change">
                     <button onClick={decrease}><i className="bi bi-dash"></i></button>
-                    <div className="d-flex flex-grow-1"><span className="m-auto">{count}</span></div>
+                    <div className="d-flex flex-grow-1">
+                        <span className="m-auto">
+                            {(count * 100 * props.product.productQuantityIncrement / 100) + parseProductUnit(props.product.productUnit)}
+                        </span>
+                    </div>
                     <button 
-                        disabled={count === props.product.productMaxQuantity} 
+                        disabled={count * props.product.productQuantityIncrement >= props.product.productMaxQuantity} 
                         onClick={increase}>
                             <i className="bi bi-plus"></i>
                     </button>
                 </div>
             }
-            <p className="product-item-price">{"Rs. " + props.product.productUnitPrice}</p>
+            <span className="product-item-price">{"Rs. " + parseCurrency(props.product.productUnitPrice)}</span>
+            <span className="product-item-unit">{parseProductUnitWithPer(props.product.productUnit)}</span>
             <p className="product-item-name">{props.product.productName}</p>
         </div>
     );

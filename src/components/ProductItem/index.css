@@ -1,19 +1,19 @@
 .product-item {
-    width: 12rem;
-    height: 24rem;
+    width: 14rem;
+    height: 26rem;
     background-color: white;
     margin: 1rem;
     padding: 1rem;
 }
 
 .product-item-image {
-    width: 10rem;
-    height: 10rem;
+    width: 12rem;
+    height: 12rem;
     margin-bottom: 1rem;
 }
 
 .add-to-cart-btn {
-    width: 10rem;
+    width: 12rem;
     height: 2rem;
     border-radius: 1rem;
     border: none;
@@ -51,14 +51,19 @@
 }
 
 .product-item-price {
-    font-size: 20px;
+    font-size: 1.2rem;
     font-weight: bold;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
+.product-item-unit {
+    font-size: 0.9rem;
+}
+
 .product-item-name {
-    font-size: 15px;
+    font-size: 1rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    margin-top: 0.5rem;
 }

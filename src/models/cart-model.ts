@@ -25,7 +25,7 @@ export class CartImpl {
         const oldItem: CartItem = this.items[product.productId] || new CartItemImpl(product, 0);
         this.items[product.productId] = {product: oldItem.product, count: oldItem.count + 1};
         this.totalItems += 1;
-        this.totalPrice += product.productUnitPrice;
+        this.totalPrice += product.productUnitPrice * 100 * product.productQuantityIncrement / 100;
     }
 
     decreaseItem(product: Product): void {
@@ -39,12 +39,13 @@ export class CartImpl {
         const oldItem: CartItem = this.items[product.productId] || new CartItemImpl(product, 0);
         this.items[product.productId] = {product: oldItem.product, count: oldItem.count - 1};
         this.totalItems -= 1;
-        this.totalPrice -= product.productUnitPrice;
+        this.totalPrice -= product.productUnitPrice * 100 * product.productQuantityIncrement / 100;
     }
 
     removeItem(product: Product) {
-        this.totalItems -= this.items[product.productId] ? this.items[product.productId].count : 0;
-        this.totalPrice -= (this.items[product.productId] ? this.items[product.productId].count : 0) * product.productUnitPrice;
+        const itemCount = this.items[product.productId] ? this.items[product.productId].count : 0;
+        this.totalItems -= itemCount;
+        this.totalPrice -= itemCount * product.productUnitPrice * 100 * product.productQuantityIncrement / 100;
         delete this.items[product.productId];
     }
 
