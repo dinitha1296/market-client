@@ -1,0 +1,141 @@
+:root {
+    --cart-item-img-size: 5rem;
+    --cart-item-padding: 0.5rem;
+    --cart-item-height: calc(var());
+}
+
+.cart-panel-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cart-panel-background {
+    flex-grow: 1;
+    /* width: 30rem; */
+}
+
+.cart-panel {
+    width: 30rem;
+    background-color: white;
+    color: var(--color-text-default);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.cart-panel-title {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.cart-panel-title * {
+    margin: 0;
+}
+
+.cart-panel-close {
+    cursor: pointer;
+}
+
+.cart-panel-close:hover {
+    color: var(--color-two);
+}
+
+.cart-item-container {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.cart-item {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.07);
+    border: 1px solid white;
+    padding: 0.5rem;
+}
+
+.cart-item img {
+    width: var(--cart-item-img-size);
+    height: var(--cart-item-img-size);
+}
+
+.cart-item-name-container {
+    flex-grow: 1;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-item-name-container * {
+    margin: 0;
+}
+
+.cart-item-amount-container {
+    display: flex;
+    width: 9rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-button {
+    margin: 0.2rem;
+    height: 1.6rem;
+    width: 1.6rem;
+    border-radius: 0.8rem;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cart-item-button:hover {
+    color: white;
+    background-color: var(--color-two);
+}
+
+.cart-item-button:disabled {
+    color: transparent;
+    background-color: transparent;
+}
+
+.cart-item-button i {
+    margin: 0;
+}
+
+.cart-item-price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.cart-item-price-container * {
+    margin: 0;
+}
+
+.cart-item-price-container p {
+    font-size: 1.2rem;
+    margin-left: auto;
+}
+
+.cart-item-price-container span {
+    font-size: 0.9rem;
+}
+
+.cart-item-price-container span:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.cart-panel-bottom-section {
+    margin-top: 1rem;
+}

@@ -156,3 +156,13 @@ body::-webkit-scrollbar-thumb{
 .bg-select-darken {
     background-color: var(--color-bg-select-darken);
 }
+
+.color-transparent {
+    color: transparent;
+    cursor: default;
+}
+
+.color-transparent:hover {
+    color: transparent;
+    cursor: default;
+}

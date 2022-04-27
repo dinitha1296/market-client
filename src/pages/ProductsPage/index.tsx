@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { DepartmentBar, ProductItem, SearchBar, TopNavigation, PageNavigator } from "../../components";
+import { DepartmentBar, ProductItem, SearchBar, TopNavigation, PageNavigator, CartTotalButton } from "../../components";
 import { Page, Product } from "../../models";
 import { ProductService } from "../../services";
 
@@ -73,6 +73,7 @@ const ProductsPage = (): JSX.Element => {
         <div>
             <TopNavigation>
                 <SearchBar></SearchBar>
+                <CartTotalButton></CartTotalButton>
             </TopNavigation>
             <DepartmentBar></DepartmentBar>
             <div id="product-section-wrapper" className="products-section-wrapper" >
