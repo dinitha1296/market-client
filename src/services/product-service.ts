@@ -2,7 +2,7 @@ import axios from "axios";
 import { Product } from "../models/product-model";
 import { Page } from "../models/page-model";
 
-const baseURL: string = "api/v1/products";
+const baseURL: string = "/products";
 
 /** 
  * GET all products

@@ -20,11 +20,11 @@ const ProductsPage = (): JSX.Element => {
     const extractPageInfo = (page: Page<Product>): void => {
         setProducts(page.content);
         setTotalPages(page.totalPages);
-    } 
+    }
 
     const onPageChange = (pageNum: number) => {
         const newParams: any = {};
-        params.forEach((v, k, p) => {newParams[k] = v});
+        params.forEach((v, k, p) => { newParams[k] = v });
         if (pageNum > 1) {
             newParams["page"] = pageNum.toString();
         } else {
@@ -33,14 +33,42 @@ const ProductsPage = (): JSX.Element => {
         setParams(newParams);
     }
 
+    const [isVisible, setIsVisible] = useState<boolean>(true);
+    const [previousScroll, setPreviousScroll] = useState<number>(0);
+
+    const listenToScroll = () => {
+        let heightToHideFrom = 500;
+        const winScroll = document.documentElement.scrollTop || 0;
+        if (winScroll > heightToHideFrom && winScroll > previousScroll) {
+            isVisible && setIsVisible(false);
+        } else {
+            setIsVisible(true);
+        }
+        setPreviousScroll(winScroll);
+    }
+
     useEffect(() => {
-        
+        window.addEventListener("scroll", listenToScroll);
+        return window.removeEventListener("scroll", () => {
+            let heightToHideFrom = 500;
+            const winScroll = document.documentElement.scrollTop || 0;
+            if (winScroll > heightToHideFrom && winScroll > previousScroll) {
+                isVisible && setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            setPreviousScroll(winScroll);
+        });
+    });
+
+    useEffect(() => {
+
         const newPageNumber: number | undefined = parseInt(params.get("page") || '0') || undefined;
-        
+
         setPageNum(newPageNumber);
 
         if (params.has("search")) {
-            
+
             ProductService.getProducts(params.get("search") || "", newPageNumber, 48)
                 .then(extractPageInfo);
 
@@ -50,12 +78,12 @@ const ProductsPage = (): JSX.Element => {
                 .then(extractPageInfo);
 
         } else if (params.has("sub-department")) {
-            
+
             ProductService.getProductsBySubDepartmentId(parseInt(params.get("sub-department") || "1"), newPageNumber, 48)
                 .then(extractPageInfo);
 
         } else if (params.has("department")) {
-            
+
             ProductService.getProductsByDepartmentId(parseInt(params.get("department") || "1"), newPageNumber, 48)
                 .then(extractPageInfo);
 
@@ -66,25 +94,29 @@ const ProductsPage = (): JSX.Element => {
 
         }
 
-        document.getElementById("product-section-wrapper")?.scrollTo(0, 0);
+        document.documentElement.scrollTo({ left: 0, top: 0 });
     }, [params]);
 
     return (
-        <div>
-            <TopNavigation>
-                <SearchBar></SearchBar>
-                <CartTotalButton></CartTotalButton>
-            </TopNavigation>
-            <DepartmentBar></DepartmentBar>
+        <div id="products-page">
+            <div className="sticky-top">
+                <TopNavigation>
+                    <SearchBar></SearchBar>
+                    <CartTotalButton></CartTotalButton>
+                </TopNavigation>
+                <div className={`${isVisible ? "" : "dipartment-bar-hidden "}department-bar`}>
+                    <DepartmentBar visible={isVisible}></DepartmentBar>
+                </div>
+            </div>
             <div id="product-section-wrapper" className="products-section-wrapper" >
                 <div className="products-section">
                     {products.map(prod => <ProductItem key={prod.productId} product={prod}></ProductItem>)}
                 </div>
-                <PageNavigator 
-                    totalPages={totalPages} 
-                    currentPage={pageNum || 1} 
+                <PageNavigator
+                    totalPages={totalPages}
+                    currentPage={pageNum || 1}
                     onPageChange={onPageChange}
-                    ></PageNavigator>
+                ></PageNavigator>
             </div>
         </div>
     );

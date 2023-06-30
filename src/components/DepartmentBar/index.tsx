@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Department } from "../../models";
 import { ApplicationState } from "../../store";
@@ -6,7 +6,7 @@ import { CategorySelectionPanel } from "../index";
 
 import "./index.css";
 
-const DepartmentBar = (): JSX.Element => {
+const DepartmentBar = (props: DepartmentBarProps): JSX.Element => {
 
     const [selectedDep] = useState<Department | undefined>(undefined);
     const [categoryPanelDepartment, categoryPanelDepartmentChange] = useState<Department | undefined>(undefined);
@@ -22,6 +22,11 @@ const DepartmentBar = (): JSX.Element => {
 
     const onCategoryPanelClose = () => categoryPanelDepartmentChange(undefined);
 
+    // Close category panel when hiding department bar
+    useEffect(() => {
+        !props.visible && onCategoryPanelClose();
+    }, [props.visible])
+
     return (
         <div>
             <div className="bg-color-two department">
@@ -33,13 +38,21 @@ const DepartmentBar = (): JSX.Element => {
                     );
                 })}
             </div>
-            {categoryPanelDepartment && 
-                <CategorySelectionPanel 
-                    onClose={onCategoryPanelClose} 
+            {
+                categoryPanelDepartment &&
+                props.visible &&
+                <CategorySelectionPanel
+                    onClose={onCategoryPanelClose}
                     department={categoryPanelDepartment}></CategorySelectionPanel>
             }
         </div>
     );
 }
+
+interface DepartmentBarProps {
+    visible?: boolean;
+}
+
+export type { DepartmentBarProps };
 
 export default DepartmentBar;

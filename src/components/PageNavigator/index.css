@@ -5,3 +5,7 @@
 .page-link:hover {
     color: var(--color-one);
 }
+
+.pagination {
+    margin-bottom: 0 !important;
+}

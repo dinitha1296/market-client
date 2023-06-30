@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Category } from "../models";
 
-const baseURL = "/api/v1/categories";
+const baseURL = "/categories";
 
 /**
 * GET all categories

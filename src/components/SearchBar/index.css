@@ -1,14 +1,14 @@
 .search-bar {
-    height: 2rem;
+    height: 2.8rem;
     width: 20rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: white;
     color: black;
-    border-radius: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    border-radius: 1.4rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
 }
 
 .search-bar input {

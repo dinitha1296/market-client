@@ -1,7 +1,7 @@
 import axios from "axios";
 import { SubDepartment } from "../models";
 
-const baseURL = "/api/v1/sub-departments";
+const baseURL = "/sub-departments";
 
 /**
 * GET all sub departments

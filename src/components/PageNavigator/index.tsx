@@ -21,14 +21,11 @@ const PageNavigator = (props: PageNavigatorProps): JSX.Element => {
     }
 
     const getBtnClasses = (pageNumber: number): string => {
-        return isSelected(pageNumber) ? "page-link bg-secondary text-light" : "page-link"; 
+        return isSelected(pageNumber) ? "page-link bg-secondary text-light" : "page-link";
     }
 
     return (
-        <nav aria-label="Page navigation example" className="mt-4">
-            {/* <p>{props.totalPages}</p>
-            <p>{props.currentPage}</p> */}
-            
+        <nav aria-label="Page navigation example" className="pt-3 pb-3">
             {props.totalPages <= 7 &&
                 <ul className="pagination justify-content-center">
                     <li className={getListClasses(1)}><button className="page-link" onClick={toPreviousPage}>Previous</button ></li>
@@ -53,7 +50,7 @@ const PageNavigator = (props: PageNavigatorProps): JSX.Element => {
                     <li className="page-item"><button className="page-link" onClick={() => props.onPageChange(props.currentPage + 1)}>{props.currentPage + 1}</button ></li>
                     <li className="page-item disabled"><button className="page-link">.</button ></li>
                     <li className="page-item"><button className="page-link" onClick={() => props.onPageChange(props.totalPages)}>{props.totalPages}</button ></li>
-                    <li className="page-item"><button className="page-link" onClick={() => toNextPage()}>Next</button ></li> 
+                    <li className="page-item"><button className="page-link" onClick={() => toNextPage()}>Next</button ></li>
                 </ul>
             }
 
@@ -94,6 +91,6 @@ interface PageNavigatorProps {
     onPageChange(pageNumber: number): void;
 }
 
-export type {PageNavigatorProps};
+export type { PageNavigatorProps };
 
 export default PageNavigator;
