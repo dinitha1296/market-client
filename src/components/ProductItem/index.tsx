@@ -5,8 +5,10 @@ import { Cart, Product } from "../../models";
 import { ApplicationState } from "../../store";
 import { decreaseItem, increaseItem } from "../../store/cart/actions";
 import { parseCurrency, parseProductUnit, parseProductUnitWithPer } from "../../utils/parser";
+import { Button, ButtonGroup, IconButton } from "@mui/material";
 
 import "./index.css";
+import { Add, Remove, ShoppingCart } from "@mui/icons-material";
 
 const ProductItem = (props: ProductItemProps): JSX.Element => {
 
@@ -31,34 +33,42 @@ const ProductItem = (props: ProductItemProps): JSX.Element => {
 
     return (
         <div className="product-item">
-            <img 
-                className="product-item-image" 
+            <img
+                className="product-item-image"
                 src={props.product.productImageURL}
                 alt=""
-                onError={({currentTarget}) => currentTarget.src = '/image-not-available.jpg'}
-                />
-            {count === 0 && 
-                <button 
-                    disabled={count * props.product.productQuantityIncrement >= props.product.productMaxQuantity} 
-                    className="add-to-cart-btn" 
+                onError={({ currentTarget }) => currentTarget.src = '/image-not-available.jpg'}
+            />
+            {count === 0 &&
+                <Button
+                    sx={{ mb: '1rem' }}
+                    className="add-to-cart-btn"
+                    variant="contained"
+                    endIcon={<ShoppingCart />}
+                    disabled={count * props.product.productQuantityIncrement >= props.product.productMaxQuantity}
                     onClick={increase}>
-                        Add to cart <i className="bi bi-cart"></i>
-                </button>
+                    Add to cart
+                </Button>
             }
             {count !== 0 &&
-                <div className="add-to-cart-btn add-to-cart-btn-change">
-                    <button onClick={decrease}><i className="bi bi-dash"></i></button>
+                <ButtonGroup fullWidth={true} sx={{ mb: '1rem'}}>
+                    <IconButton
+                        color="primary"
+                        size='small'
+                        onClick={decrease}><Remove /></IconButton>
                     <div className="d-flex flex-grow-1">
                         <span className="m-auto">
                             {(count * 100 * props.product.productQuantityIncrement / 100) + parseProductUnit(props.product.productUnit)}
                         </span>
                     </div>
-                    <button 
-                        disabled={count * props.product.productQuantityIncrement >= props.product.productMaxQuantity} 
-                        onClick={increase}>
-                            <i className="bi bi-plus"></i>
-                    </button>
-                </div>
+                    <IconButton
+                        color="primary"
+                        size='small'
+                        onClick={increase}
+                        disabled={count * props.product.productQuantityIncrement >= props.product.productMaxQuantity}>
+                        <Add />
+                    </IconButton>
+                </ButtonGroup>
             }
             <span className="product-item-price">{"Rs. " + parseCurrency(props.product.productUnitPrice)}</span>
             <span className="product-item-unit">{parseProductUnitWithPer(props.product.productUnit)}</span>
