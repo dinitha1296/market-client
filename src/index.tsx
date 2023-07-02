@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css';
 import { ThemeProvider } from '@mui/system';
-import matuiTheme from './matui-theme';
+import matuiTheme from './mui-theme';
 
 const root: Root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
