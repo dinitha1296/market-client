@@ -63,7 +63,8 @@ const ProductsPage = (): JSX.Element => {
 
     useEffect(() => {
 
-        const newPageNumber: number | undefined = parseInt(params.get("page") || '0') || undefined;
+        const newPageNumber: number | undefined = parseInt(params.get("page") || '1') || undefined;
+        console.log(newPageNumber)
 
         setPageNum(newPageNumber);
 

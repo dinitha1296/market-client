@@ -15,7 +15,7 @@ const getProducts = (query?: string, pageNumber?: number, pageSize?: number): Pr
 
     const params: any = {};
     if (query) params.query = query;
-    if (pageNumber) params["page-number"] = pageNumber - 1;
+    if (pageNumber) params["page-number"] = pageNumber;
     if (pageSize) params["page-size"] = pageSize;
 
     return axios.get<Page<Product>>(baseURL, { params: params }).then(res => res.data);
@@ -40,11 +40,11 @@ const getProductsById = (id: number) : Promise<Product> => {
  */
 const getProductsByDepartmentId = (id: number, pageNumber?: number, pageSize?: number): Promise<Page<Product>> => {
 
-    const params: any = {'department-id': id};
-    if (pageNumber) params["page-number"] = pageNumber - 1;
+    const params: any = {};
+    if (pageNumber) params["page-number"] = pageNumber;
     if (pageSize) params["page-size"] = pageSize;
 
-    return axios.get<Page<Product>>(baseURL, { params: params }).then(res => res.data);
+    return axios.get<Page<Product>>(`${baseURL}/department/${id}`, { params: params }).then(res => res.data);
 }
 
 /**
@@ -56,11 +56,11 @@ const getProductsByDepartmentId = (id: number, pageNumber?: number, pageSize?: n
  */
  const getProductsBySubDepartmentId = (id: number, pageNumber?: number, pageSize?: number): Promise<Page<Product>> => {
 
-    const params: any = {'sub-department-id': id};
-    if (pageNumber) params["page-number"] = pageNumber - 1;
+    const params: any = {};
+    if (pageNumber) params["page-number"] = pageNumber;
     if (pageSize) params["page-size"] = pageSize;
 
-    return axios.get<Page<Product>>(baseURL, { params: params }).then(res => res.data);
+    return axios.get<Page<Product>>(`${baseURL}/sub-department/${id}`, { params: params }).then(res => res.data);
 }
 
 /**
@@ -72,11 +72,11 @@ const getProductsByDepartmentId = (id: number, pageNumber?: number, pageSize?: n
  */
  const getProductsByCategoryId = (id: number, pageNumber?: number, pageSize?: number): Promise<Page<Product>> => {
 
-    const params: any = {'category-id': id};
-    if (pageNumber) params["page-number"] = pageNumber - 1;
+    const params: any = {};
+    if (pageNumber) params["page-number"] = pageNumber;
     if (pageSize) params["page-size"] = pageSize;
 
-    return axios.get<Page<Product>>(baseURL, { params: params }).then(res => res.data);
+    return axios.get<Page<Product>>(`${baseURL}/category/${id}`, { params: params }).then(res => res.data);
 }
 
 const ProductService = {
