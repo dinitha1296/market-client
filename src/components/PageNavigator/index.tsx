@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination, Stack } from "@mui/material";
+import { Pagination } from "@mui/material";
 
 const PageNavigator = (props: PageNavigatorProps): JSX.Element => {
 

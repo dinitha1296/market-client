@@ -38,35 +38,26 @@ const ProductsPage = (): JSX.Element => {
     const [isVisible, setIsVisible] = useState<boolean>(true);
     const [previousScroll, setPreviousScroll] = useState<number>(0);
 
-    const listenToScroll = () => {
-        let heightToHideFrom = 500;
-        const winScroll = document.documentElement.scrollTop || 0;
-        if (winScroll > heightToHideFrom && winScroll > previousScroll) {
-            isVisible && setIsVisible(false);
-        } else {
-            setIsVisible(true);
-        }
-        setPreviousScroll(winScroll);
-    }
-
     useEffect(() => {
-        window.addEventListener("scroll", listenToScroll);
-        return window.removeEventListener("scroll", () => {
-            let heightToHideFrom = 500;
-            const winScroll = document.documentElement.scrollTop || 0;
-            if (winScroll > heightToHideFrom && winScroll > previousScroll) {
-                isVisible && setIsVisible(false);
-            } else {
-                setIsVisible(true);
+
+        const listenToScroll = () => {
+
+            let heightToHideFrom = 50;
+            const winScroll = window.scrollY;
+
+            if (Math.abs(winScroll - previousScroll) > heightToHideFrom) {
+
+                setIsVisible(winScroll < heightToHideFrom || winScroll < previousScroll);
+                setPreviousScroll(winScroll)
             }
-            setPreviousScroll(winScroll);
-        });
-    });
+        }
+        window.addEventListener("scroll", listenToScroll);
+        return () => window.removeEventListener("scroll", listenToScroll)
+    }, [previousScroll]);
 
     useEffect(() => {
 
         const newPageNumber: number | undefined = parseInt(params.get("page") || '1') || undefined;
-        console.log(newPageNumber)
 
         setPageNum(newPageNumber);
 

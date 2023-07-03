@@ -14,7 +14,6 @@ const CartTotalButton = (): JSX.Element => {
     const cart: Cart = useSelector((state: ApplicationState) => state.cart);
 
     const onCartClose = () => {
-        console.log("Close");
         setCartOpened(false);
     }
 
