@@ -8,6 +8,8 @@ import "./index.css"
 
 const ProductsPage = (): JSX.Element => {
 
+    const PAGE_SIZE: number = 60;
+
     const [products, setProducts] = useState<Product[]>([]);
 
     // Undefined type is added to pageNum to match with
@@ -70,27 +72,27 @@ const ProductsPage = (): JSX.Element => {
 
         if (params.has("search")) {
 
-            ProductService.getProducts(params.get("search") || "", newPageNumber, 48)
+            ProductService.getProducts(params.get("search") || "", newPageNumber, PAGE_SIZE)
                 .then(extractPageInfo);
 
         } else if (params.has("category")) {
 
-            ProductService.getProductsByCategoryId(parseInt(params.get("category") || "1"), newPageNumber, 48)
+            ProductService.getProductsByCategoryId(parseInt(params.get("category") || "1"), newPageNumber, PAGE_SIZE)
                 .then(extractPageInfo);
 
         } else if (params.has("sub-department")) {
 
-            ProductService.getProductsBySubDepartmentId(parseInt(params.get("sub-department") || "1"), newPageNumber, 48)
+            ProductService.getProductsBySubDepartmentId(parseInt(params.get("sub-department") || "1"), newPageNumber, PAGE_SIZE)
                 .then(extractPageInfo);
 
         } else if (params.has("department")) {
 
-            ProductService.getProductsByDepartmentId(parseInt(params.get("department") || "1"), newPageNumber, 48)
+            ProductService.getProductsByDepartmentId(parseInt(params.get("department") || "1"), newPageNumber, PAGE_SIZE)
                 .then(extractPageInfo);
 
         } else {
 
-            ProductService.getProducts(undefined, newPageNumber, 48)
+            ProductService.getProducts(undefined, newPageNumber, PAGE_SIZE)
                 .then(extractPageInfo);
 
         }

@@ -2,6 +2,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 16rem);
     justify-content: center;
+    max-width: 100rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .products-section-wrapper {
