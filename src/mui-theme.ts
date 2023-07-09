@@ -1,7 +1,8 @@
 import { createTheme, Theme } from "@mui/material";
 
-const matuiTheme: Theme = createTheme({
+const muiTheme: Theme = createTheme({
     typography: {
+        fontFamily: 'Ubuntu',
         button: {
             textTransform: 'none'
         }
@@ -18,4 +19,4 @@ const matuiTheme: Theme = createTheme({
     }
 })
 
-export default matuiTheme;
+export default muiTheme;

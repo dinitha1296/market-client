@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Department } from "../../models";
@@ -29,15 +30,26 @@ const DepartmentBar = (props: DepartmentBarProps): JSX.Element => {
 
     return (
         <div>
-            <div className="bg-color-two department">
+            <ButtonGroup
+                className="bg-color-two department"
+                color="secondary"
+                variant='text'
+                sx={{ borderRadius: '0', display: 'flex' }}>
                 {departments.map((dep: Department, index: number) => {
                     return (
-                        <button key={index} className={getDepBtnClass(dep)} onClick={() => categoryPanelDepartmentChange(dep)}>
+                        <Button
+                            color='secondary'
+                            size="large"
+                            key={index}
+                            className={getDepBtnClass(dep)}
+                            sx={{ borderColor: 'transparent' }}
+                            onClick={() => categoryPanelDepartmentChange(dep)}>
                             {dep.departmentName}
-                        </button>
+                        </Button>
                     );
                 })}
-            </div>
+
+            </ButtonGroup>
             {
                 categoryPanelDepartment &&
                 props.visible &&

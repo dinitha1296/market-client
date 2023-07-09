@@ -1,3 +1,4 @@
+import zIndex from "@mui/material/styles/zIndex";
 import React, { useState } from "react";
 
 const TopNavigation = (props: React.PropsWithChildren<{}>): JSX.Element => {
@@ -7,7 +8,7 @@ const TopNavigation = (props: React.PropsWithChildren<{}>): JSX.Element => {
     const [isSettingsSelected, onSettingsClick] = useState<boolean>(false);
 
     return (
-        <nav className="navbar navbar-default px-4 py-3 bg-color-one text-white">
+        <nav className="navbar navbar-default px-4 py-3 bg-color-one text-white" style={{zIndex: 2}}>
             <div id="app-title">
                 <a href="/" className="text-reset text-decoration-none">
                     <h2 className="text-white mb-0">Market</h2>

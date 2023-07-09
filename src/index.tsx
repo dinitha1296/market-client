@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './index.css';
 import { ThemeProvider } from '@mui/system';
-import matuiTheme from './mui-theme';
+import muiTheme from './mui-theme';
 
 const root: Root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -19,7 +19,7 @@ root.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<PersistGate persistor={persistor}>
-				<ThemeProvider theme={matuiTheme}>
+				<ThemeProvider theme={muiTheme}>
 					<App />
 				</ThemeProvider>
 			</PersistGate>
